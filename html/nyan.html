@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+<meta charset="UTF-8">
+<title>The Nyan Kitty Page</title>
+<script src="jquery.js"></script>
+<script>
+$(function(){
+	$(window).bind('load', function(){
+		var audio = document.getElementsByTagName("audio")[0];
+		audio.play();
+		audio.loop = true;
+	});
+});
+</script>
+<style>
+	a				{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
+	a, img			{border:0; outline:none;}
+	body, html		{background-color:#001F46; font-family:sans serif;}
+	body			{background:url('nyanback.png'); margin:0; height:100%; width:100%;}
+	a				{text-decoration:none;}
+	a.title			{display:block; font-size:4em; text-align:center; color:#f0f; line-height:1.4em; padding-top:20px;}
+	a.back			{display:block; margin-top:200px; margin-bottom:50px; color:#7193FF; font-size:1.0em;}
+	a.back:hover	{color:#fff;}	
+	
+	.default		{width:100%; margin:0 auto; text-align:center; margin-top:60px;}
+	#nyankitty {width:840px; height:252px; background:url('nyankitty.png'); position:relative;
+    -webkit-animation:dance 500ms linear 1s infinite; /* Chrome, Safari, Opera */
+    animation:dance 500ms linear 1s infinite;}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes dance {
+    0%   { -webkit-transform:translate(-7em,0);     }
+    25%  { -webkit-transform:translate(-2em,0);   	}
+    50%  { -webkit-transform:translate(-2em,5em) 	}
+    75%  { -webkit-transform:translate(-7em,5em);   }
+    100% { -webkit-transform:translate(-7em,0);     } 
+}
+
+/* Standard syntax */
+@keyframes dance {
+    0%   { transform:translate(-7em,0);     }
+    25%  { transform:translate(-2em,0);   	}
+    50%  { transform:translate(-2em,5em) 	}
+    75%  { transform:translate(-7em,5em);   }
+    100% { transform:translate(-7em,0);     } 
+}
+</style>
+	</head> 
+<body>
+	<a href="index.html" class="title">Nyan Kitty</a>
+	<div class="default"><div id="nyankitty"></div></a>
+
+	<audio><source src="http://esyou.com/data/nyan/nyan.ogg"></source></audio>
+	
+	<a href="index.html" class="back">Go Back &amp; adopt a Kitty</a>
+</body>
+</html>
