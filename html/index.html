@@ -1,0 +1,159 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+<meta charset="UTF-8">
+<title>Million Kitty Page</title>
+<script src="jquery.js"></script>
+<script>
+$(function(){	
+	var imgblock = [
+	[0,0,2,2],
+	[2,0,3,2],
+	[5,0,4,5],
+	[9,0,1,5],
+	[10,0,2,5],
+	[12,0,3,3],
+	[15,0,1,3],
+	[0,2,1,1],
+	[1,2,4,1],
+	[0,3,5,2],
+	[12,3,4,4],
+	[0,5,1,5],
+	[1,5,2,3],
+	[3,5,1,3],
+	[4,5,1,3],
+	[5,5,3,5],
+	[8,5,4,2],
+	[1,8,1,2],
+	[2,8,3,2],
+	[8,7,8,3],
+	[0,10,3,3],
+	[3,10,1,3],
+	[4,10,1,5],
+	[5,10,6,6],
+	[11,10,1,5],
+	[11,15,1,1],
+	[12,10,4,2],
+	[12,12,2,3],
+	[14,12,1,3],
+	[15,12,1,3],
+	[0,13,4,1],
+	[0,14,4,2],
+	[4,15,1,1],
+	[12,15,1,2],
+	[13,15,3,2],
+	[12,17,1,1],
+	[13,17,2,2],
+	[15,17,1,2],
+	[0,16,1,5],
+	[1,16,4,5],
+	[5,16,3,1],
+	[5,17,3,3],
+	[8,16,4,2],
+	[8,18,1,1],
+	[9,18,4,1],
+	[0,21,1,1],
+	[1,21,4,1],
+	[5,20,3,5],
+	[8,19,5,5],
+	[13,19,1,5],
+	[14,19,2,3],
+	[14,22,2,2],
+	[0,24,3,3],
+	[3,24,1,3],
+	[4,24,1,1],
+	[4,25,4,2],
+	[8,24,8,3],
+	[0,22,5,2],
+	[0,27,1,5],
+	[1,27,2,3],
+	[1,30,2,2],
+	[3,27,2,3],
+	[3,30,1,2],
+	[4,30,3,2],
+	[5,27,1,3],
+	[6,27,1,3],
+	[7,27,4,5],
+	[11,27,2,2],
+	[11,29,1,1],
+	[11,30,5,2],
+	[13,27,3,2],
+	[12,29,4,1],
+	];
+	var siz = 60;
+	var mainblock = $("#mainblock");
+	for (var i = 0; i<imgblock.length; i++){
+			var v = imgblock[i];
+			var a = $("<a href='#' class='links'></a>");
+			a.css("left",v[0]*siz);
+			a.css("top",v[1]*siz);
+			a.css("width",v[2]*siz);
+			a.css("height",v[3]*siz);
+			a.append("<img src='http://placekitty.artisan.io/g/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"'>");
+			a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"'>");
+			mainblock.append(a);
+//			a.children().eq(0).css("opacity",0.25+v[0]/16);
+//			a.children().eq(1).css("opacity",v[0]/16);
+			a.children().eq(0).css("opacity",0.25);
+			a.children().eq(1).css("opacity",0);
+	}
+});
+
+$(function(){
+	$('#bid').hide();
+	$('a.links').click(function () {
+		$('#bid').slideToggle("slow");
+	});
+	$('a.close').click(function () {
+		$('#bid').slideToggle("slow");
+	});
+});
+	
+</script>
+<style>
+	a				{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
+	a, img			{border:0; outline:none;}
+	body, html		{background-color:#000; font-family:sans serif;}
+	a				{text-decoration:none;}
+	a.title			{display:block; font-size:4em; text-align:center; color:#f0f; line-height:1.4em;}
+	#mainblock		{width:960px; height:1920px; margin:0 auto; position:relative; margin-bottom:40px;}
+	#bid			{width:560px; height:320px; color:#fff; background-color:#222; border-radius:6px; padding:2em; margin:0 auto; margin-bottom:20px; position:relative;}
+	a.links 		{display:block; position:absolute;}	
+	a.links img		{border:2px solid #000; position:absolute;}
+	
+	.bid_title		{text-align:center; margin:0 auto; padding:10px 20px; background-color:#333; color:#888; font-size:1.0em; margin-bottom:20px;}
+	.bid_text		{font-size:1.2em; margin-bottom:20px;}
+	.bid_text p		{margin:10px 0;}
+	a.outbid		{display:block; position:absolute; bottom:0; font-size:1.4em; padding:20px; background-color:#A023A0; border-radius:4px 4px 0 0; color:#fff; width:300px; text-align:center; left:140px; right:140px;}
+	a.outbid:hover	{background-color:#f0f; color:#fff;}
+	.price			{margin:0 auto; text-align:center; margin-top:40px; color:#ccc;}
+	a.sponsor		{display:block; font-size:1.1em; padding:10px; background-color:#000; color:#fff; width:300px; text-align:center; margin:0 auto;}
+	a.sponsor:hover	{background-color:#000; color:#0f0;}
+	
+	a.close			{display:block; position:absolute; bottom:0; right:-120px; color:#666; font-size:1.0em;}
+	a.close:hover	{color:#ccc;}
+	
+	a.footer		{display:block; padding:20px; margin:0 auto; text-align:center; color:#fff; font-size:1.2em;}
+	a.footer:hover	{color:#f0f;}
+</style>
+	</head> 
+<body>
+	<a href="index.html" class="title">The Million Kitty Page</a>
+	<div id="bid">
+		<div class="bid_title">This Kitty is available!</div>
+		<div class="bid_text">
+			<p>Such a lonely kitty, all greyed out and nowhere to go.</p>
+			<p>Buy him some colour! I'm sure he'd like that.</p>
+			<p>The more you do it, the rosier he'll glow!</p>
+		</div>
+		<a href="#" class="sponsor">Visit this sponsor</a>
+		<div class="price">
+			<span class="">Current Price: </span><span class="">$0.01</span>
+		</div>
+		<a href="buy.html" class="outbid">OUTBID</a>
+		<a class="close">Close This</a>
+	</div>
+	<div id="mainblock"></div>
+	<a href="http://yorkshirecatrescue.org/about-us/our-rehoming-centre/" class="footer">100% of money raised will go to a charity to rehome real kitties.</a>
+</body>
+</html>
