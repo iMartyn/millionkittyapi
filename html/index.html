@@ -82,6 +82,7 @@ $(function(){
 	];
 	var siz = 60;
 	var mainblock = $("#mainblock");
+    var allblocks = $.get('http://localhost:3000/api/blocks').responseJSON
 	for (var i = 0; i<imgblock.length; i++){
 			var v = imgblock[i];
 			var a = $("<a href='#' class='links' id='img"+ i +"'></a>");
@@ -89,13 +90,13 @@ $(function(){
 			a.css("top",v[1]*siz);
 			a.css("width",v[2]*siz);
 			a.css("height",v[3]*siz);
-			a.append("<img src='http://placekitty.artisan.io/g/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"'>");
+			a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"' style='filter: url(filters.svg#grayscale); filter: gray; -webkit-filter: grayscale(1);'>");
 			a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"'>");
 			mainblock.append(a);
-//			a.children().eq(0).css("opacity",0.25+v[0]/16);
-//			a.children().eq(1).css("opacity",v[0]/16);
-			a.children().eq(0).css("opacity",0.25);
-			a.children().eq(1).css("opacity",0);
+			a.children().eq(0).css("opacity",0.25+v[0]/16);
+			a.children().eq(1).css("opacity",v[0]/16);
+//			a.children().eq(0).css("opacity",0.25);
+//			a.children().eq(1).css("opacity",0);
 	}
 });
 

@@ -72,6 +72,7 @@ router.route('/blocks/:block_id')
     });
 
 app.use('/api', router);
+app.use(express.static(__dirname + '/html'));
 
 app.listen(3000);
 console.log('API listening on port 3000');
