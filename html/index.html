@@ -84,7 +84,7 @@ $(function(){
 	var mainblock = $("#mainblock");
 	for (var i = 0; i<imgblock.length; i++){
 			var v = imgblock[i];
-			var a = $("<a href='#' class='links'></a>");
+			var a = $("<a href='#' class='links' id='img"+ i +"'></a>");
 			a.css("left",v[0]*siz);
 			a.css("top",v[1]*siz);
 			a.css("width",v[2]*siz);
