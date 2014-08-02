@@ -23,10 +23,19 @@ router.get('/', function(req, res) {
 router.route('/blocks')
     .post(function(req,res) {
         var block = new Block();
-        block.url = req.body.url;
+        for (var propertyName in SettableBlockProperties) {
+            if (SettableBlockProperties.hasOwnProperty(propertyName)) {
+                console.log(block.hasOwnProperty(propertyName));
+                console.log('setting '+propertyName);
+                block[propertyName] = req.body[propertyName]
+            }
+        }
+        console.log(block);
         block.save(function (err) {
             if (err) res.send(err);
-            else res.json({id: 1, data: block, message: 'Block created!'});
+            else { 
+                res.json({data: block, message: 'Block created!'});
+            }
         });
     })
     .get(function(req,res) {
@@ -35,6 +44,30 @@ router.route('/blocks')
                 res.send(err);
             else
                 res.json(blocks);
+        });
+    });
+router.route('/blocks/:block_id')
+    .put(function(req,res){
+        console.log('Finding block id '+req.params.block_id);
+        Block.findOne({'block_id': req.params.block_id},function(err,block){
+            if (err)
+                res.send(err);
+            if (!block) {
+                res.json({message: 'Not found.'})
+            } else {
+                console.log(block)
+                for (var propertyName in block) {
+                    if (SettableBlockProperties.hasOwnProperty(propertyName)) {
+                        block[propertyName] = req.body[propertyName]
+                    }
+                    block.block_id = req.params.block_id
+                }
+                console.log(block)
+                block.save(function(err) {
+                    if (err) res.send(err);
+                    else res.json({message: 'Block updated'});
+                });
+            }
         });
     });
 
