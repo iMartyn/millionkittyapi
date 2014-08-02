@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html> 
+	<head>
+<meta charset="UTF-8">
+<title>Million Kitty Page</title>
+<script src="jquery.js"></script>
+<script>
+	
+</script>
+<style>
+	a				{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
+	a, img			{border:0; outline:none;}
+	body, html		{background-color:#000; font-family:sans serif;}
+	a				{text-decoration:none;}
+	a.title			{display:block; font-size:4em; text-align:center; color:#f0f; line-height:1.4em;}
+	#buy			{width:560px; color:#fff; background-color:#222; border-radius:6px; padding:2em; margin:0 auto; margin-bottom:20px; min-height:400px; position:relative;}
+	
+	textarea				{border:1px solid #222; font-family:sans serif;}
+	textarea:focus			{outline:0; outline:none !important; border:1px solid #000;}
+	textarea.bid_text:focus	{outline:0; outline:none !important; border:1px solid #0f0;}
+	textarea.sponsor		{border:1px solid #000; width:558px;}
+	input.buy_amount		{display:inline-block; background-color:#000; color:#0f0; font-size:1em; border:1px solid #000; width:400px;}
+	input.buy_amount:focus	{outline:0; outline:none !important; border:1px solid #000;}
+	
+	.bid_title		{text-align:center; margin:0 auto; padding:10px 20px; background-color:#333; color:#888; font-size:1.0em; margin-bottom:20px;}
+	.bid_text		{font-size:1.2em; margin-bottom:20px; margin-top:20px; border-color:#222; background-color:#222; width:554px; height:100px; color:#fff;}
+	.price			{margin:0 auto; text-align:center; margin-top:40px; margin-bottom:20px; color:#ccc;}
+	.sponsor		{margin:0 auto; font-size:1.1em; padding:10px 0; background-color:#000; width:554px; color:#fff; text-align:center;}
+	.buy_wrap		{background-color:#000; color:#0f0; font-size:4em; text-align:center; padding:20px; border-color:#000;}
+	a.outbid		{display:block; font-size:1.4em; padding:20px; background-color:#0043A1; border-radius:4px; color:#fff; width:300px; text-align:center; margin:0 auto;}
+	a.outbid:hover	{background-color:#006BFF; color:#fff;}
+	a.close			{display:block; position:absolute; bottom:0; right:-120px; color:#666; font-size:1.0em;}
+	a.close:hover	{color:#ccc;}	
+	a.footer		{display:block; margin-top:60px; padding:20px; margin:0 auto; text-align:center; color:#fff; font-size:1em;}
+	a.footer:hover	{color:#f0f;}
+</style>
+	</head> 
+<body>
+	<a href="index.html" class="title">The Million Kitty Page</a>
+	<form action="">
+		<div id="buy">
+			<div class="buy_wrap">$<input class="buy_amount" placeholder="0.01"></input></div>
+			<textarea class="bid_text" placeholder="Type your kitty-friendly sponsor text here ..."></textarea>
+			<textarea rows="1" class="sponsor" placeholder="http://writeyoursponsorlinkhere.com"></textarea>
+			<div class="price">
+				<span class="">Current Price: </span><span class="">$0.01</span>
+			</div>
+			<a href="#" class="outbid">BUY WITH PAYPAL</a>
+			<a href="index.html" class="close">Back</a>
+		</div>
+	</form>
+	<a href="http://yorkshirecatrescue.org/about-us/our-rehoming-centre/" class="footer">100% of money raised will go to a charity to rehome real kitties.</a>
+</body>
+</html>
