@@ -135,9 +135,10 @@ function toggleSponsor(sponsorID) {
             sponsorAvailable.html('This is a sponsored kitty but you can outbid the current sponsor!');
             sponsorPrice.html('$'+clickedSponsorPrice)
             $('.outbid').html('OUTBID');
+            $('.outbid').attr('href','buy.html#price='+clickedSponsorPrice+'&id='+sponsorID);
         } else {
             sponsorAvailable.html('This Kitty is available!');
-            $('.outbid').html('BID');
+            $('.outbid').html('BID').attr('href','buy.html#id='+sponsorID);
             sponsorPrice.html('$0.01');
             sponsorEl.hide();
             sponsorText.html(defaultBidText);

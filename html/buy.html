@@ -4,8 +4,33 @@
 <meta charset="UTF-8">
 <title>Million Kitty Page</title>
 <script src="jquery.js"></script>
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 <script>
-	
+var hasharray = document.location.hash.replace('#','').split('&');
+var hashkv = [];
+for (i=0; i <hasharray.length; i++) {
+    equalsplit = hasharray[i].split('=');
+    hashkv[equalsplit[0]] = equalsplit[1];
+}
+console.log(hashkv);
+$(document).ready(function() {
+    var currentPrice = 0.0;
+    if ('price' in hashkv) {
+        currentPrice = parseFloat(hashkv['price']);
+        currentPriceFormatted = '$'+currentPrice.toFixed(2);
+        $('#buy .buy_amount').attr('placeholder',currentPriceFormatted.replace('$',''));
+        $('#buy .price_amount').html(currentPriceFormatted);
+    }
+    if ('id' in hashkv) {
+        id = parseInt(hashkv['id']);
+        $('#id').attr('value',id);
+    }
+    $.get('http://localhost:3000/braintreetoken',function(data) {
+        braintree.setup(data, 'dropin', {
+            container: jQuery('#dropin')
+        });	
+    });
+});
 </script>
 <style>
 	a				{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
@@ -37,18 +62,20 @@
 	</head> 
 <body>
 	<a href="index.html" class="title">The Million Kitty Page</a>
-	<form action="">
 		<div id="buy">
-			<div class="buy_wrap">$<input class="buy_amount" placeholder="0.01"></input></div>
-			<textarea class="bid_text" placeholder="Type your kitty-friendly sponsor text here ..."></textarea>
-			<textarea rows="1" class="sponsor" placeholder="http://writeyoursponsorlinkhere.com"></textarea>
+	<form name="xyzzy" id="xyzzy" action="/checkout" method="POST">
+            <input type="hidden" name="id" value="" id="id" />
+			<div class="buy_wrap">$<input class="buy_amount" placeholder="0.01" name="amount_paid"></input></div>
+			<textarea class="bid_text" placeholder="Type your kitty-friendly sponsor text here ..." name="text"></textarea>
+			<textarea rows="1" class="sponsor" placeholder="http://writeyoursponsorlinkhere.com" name="url"></textarea>
 			<div class="price">
-				<span class="">Current Price: </span><span class="">$0.01</span>
+				<span class="price_label">Current Price: </span><span class="price_amount">$0.01</span>
 			</div>
-			<a href="#" class="outbid">BUY WITH PAYPAL</a>
+            <div id="dropin"></div>
+			<a class="outbid" onclick="$('#xyzzy').submit()">BUY WITH PAYPAL</a>
 			<a href="index.html" class="close">Back</a>
-		</div>
 	</form>
+		</div>
 	<a href="http://yorkshirecatrescue.org/about-us/our-rehoming-centre/" class="footer">100% of money raised will go to a charity to rehome real kitties.</a>
 </body>
 </html>

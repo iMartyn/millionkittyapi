@@ -4,7 +4,7 @@ var http = require('http');
 var app = express();
 var server = http.createServer(app);
 var bodyParser = require('body-parser');
-
+var braintree = require('braintree');
 app.use(bodyParser());
 
 var router = express.Router();
@@ -122,12 +122,50 @@ router.route('/blocks/:block_id')
             }
         });
     });
-
+app.get('/braintreetoken',function (req, res) {
+  gateway.clientToken.generate({
+  }, function (err, response) {
+    res.send(response.clientToken);
+  });
+});
+app.post('/checkout',function (req,res) {
+    console.log('Finding block id '+req.body.id);
+    Block.findOne({'block_id': req.body.id},function(err,block){
+        if (err)
+            res.send(err);
+        if (!block) {
+            res.json({message: 'Not found.'})
+        } else {
+            console.log(block)
+            for (var propertyName in block) {
+                if (SettableBlockProperties.hasOwnProperty(propertyName)) {
+                    block[propertyName] = req.body[propertyName]
+                }
+                block.block_id = req.body.id
+            }
+            console.log(block)
+            block.save(function(err) {
+                if (err) res.send(err);
+                else {
+                    res.redirect(302, '/');
+                    primus.write('Block updated');
+                }
+            });
+        }
+    });
+});
 app.use('/api', router);
 app.use(express.static(__dirname + '/html'));
 primus = new Primus(server, { transformer: 'websockets' });
 primus.on('connection', function(spark) {
     console.log('received connection');
+});
+
+var gateway = braintree.connect({
+    environment:  braintree.Environment.Sandbox,
+    merchantId:   '823jmwshc52b8w4z',
+    publicKey:    '9qkf9zx9sr6gzkhz',
+    privateKey:   '5841ac9ca73292a41e43e0893f459b71'
 });
 
 server.listen(3000);
