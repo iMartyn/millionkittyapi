@@ -109,8 +109,8 @@ function updateSponsors() {
                 sortedBlockData[data[i].block_id] = data[i];
             }
             for (i = 0; i<sortedBlockData.length; i++){
-                jQuery('#kittypic_grey_'+i).css("opacity",1-sortedBlockData[i].scale);
-                jQuery('#kittypic_'+i).css("opacity",sortedBlockData[i].scale);
+                jQuery('#kittypic_grey_'+i).css("opacity",1-sortedBlockData[i].scale).attr("title",sortedBlockData[i].text);
+                jQuery('#kittypic_'+i).css("opacity",sortedBlockData[i].scale).attr("title",sortedBlockData[i].text);
             }
     });
 }
