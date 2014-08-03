@@ -51,7 +51,7 @@ a.sponsor:hover	{background-color:#000; color:#0f0;}
 .buy_wrap		{background-color:#000; color:#0f0; font-size:4em; text-align:center; padding:20px; border-color:#000;}
 .buy_text		{font-size:1.2em; margin-bottom:20px; margin-top:20px; border-color:#222; background-color:#222; width:554px; height:100px; color:#fff;}
 .buy_link		{margin:0 auto; font-size:1.1em; padding:10px 0; background-color:#000; width:554px; color:#fff; text-align:center;}
-.price_wrap		{margin:0 auto; text-align:center; margin-top:40px; margin-bottom:20px; color:#ccc;}
+.price.buy		{margin-bottom:20px;}
 a.buy_butt		{display:block; font-size:1.4em; padding:20px; background-color:#0043A1; border-radius:4px; color:#fff; width:300px; text-align:center; margin:0 auto;}
 a.buy_butt:hover{background-color:#006BFF; color:#fff;}
 
