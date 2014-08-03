@@ -82,22 +82,27 @@ $(function(){
 	];
 	var siz = 60;
 	var mainblock = $("#mainblock");
-    var allblocks = $.get('http://localhost:3000/api/blocks').responseJSON
-	for (var i = 0; i<imgblock.length; i++){
-			var v = imgblock[i];
-			var a = $("<a href='#' class='links' id='img"+ i +"'></a>");
-			a.css("left",v[0]*siz);
-			a.css("top",v[1]*siz);
-			a.css("width",v[2]*siz);
-			a.css("height",v[3]*siz);
-			a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"' style='filter: url(filters.svg#grayscale); filter: gray; -webkit-filter: grayscale(1);'>");
-			a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"'>");
-			mainblock.append(a);
-			a.children().eq(0).css("opacity",0.25+v[0]/16);
-			a.children().eq(1).css("opacity",v[0]/16);
-//			a.children().eq(0).css("opacity",0.25);
-//			a.children().eq(1).css("opacity",0);
-	}
+    var allBlocks = $.getJSON('http://localhost:3000/api/blocks', function(data) {
+            sortedBlockData = [];
+            for (i = 0; i<data.length; i++){
+                sortedBlockData[data[i].block_id] = data[i];
+            }
+            for (var i = 0; i<imgblock.length; i++){
+                    var v = imgblock[i];
+                    var a = $("<a href='#' class='links' id='img"+ i +"'></a>");
+                    a.css("left",v[0]*siz);
+                    a.css("top",v[1]*siz);
+                    a.css("width",v[2]*siz);
+                    a.css("height",v[3]*siz);
+                    a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"' style='filter: url(filters.svg#grayscale); filter: gray; -webkit-filter: grayscale(1);'>");
+                    a.append("<img src='http://placekitty.artisan.io/"+ (v[2]*siz-4) +"/"+ (v[3]*siz-4) +"'>");
+                    mainblock.append(a);
+                    a.children().eq(0).css("opacity",1-sortedBlockData[i].scale);
+                    a.children().eq(1).css("opacity",sortedBlockData[i].scale);
+        //			a.children().eq(0).css("opacity",0.25);
+        //			a.children().eq(1).css("opacity",0);
+            }
+    });
 });
 
 $(function(){

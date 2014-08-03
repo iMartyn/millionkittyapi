@@ -10,6 +10,23 @@ var Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost:27017/blocks');
 
 var Block = require('./app/models/block');
+var async = require('async');
+var block_ids = []
+for (var i=0; i<=72; i++) {
+    block_ids.push(i);
+}
+async.eachSeries(block_ids, function(id, callback) {
+    Block.findOne({'block_id':id}, function(err,doc) {
+        if (err || doc === null) {
+            block = new Block();
+            block.block_id = id;
+            block.save();
+        }
+        console.log(err,doc);
+        console.log("Would have created "+id);
+        callback();
+    });
+});
 
 router.use(function(req,res,next) {
     console.log(req);
@@ -42,8 +59,37 @@ router.route('/blocks')
         Block.find(function(err, blocks) {
             if (err)
                 res.send(err);
-            else
+            else {
+                var maxPaid = 0;
+                var blockCount = blocks.length;
+                for (var i = 0; i < blockCount; i++) {
+                    if (blocks[i].amount_paid > maxPaid) {
+                        maxPaid = blocks[i].amount_paid;
+                    }
+                }
+                console.log(maxPaid);
+                for (var i = 0; i < blockCount; i++) {
+                    thisPaid = 0;
+                    if ('amount_paid' in blocks[i]) {
+                        thisPaid = blocks[i].amount_paid;
+                    }
+                    if (thisPaid > 0) {
+                        blocks[i].scale = thisPaid / maxPaid;
+                    } else {
+                        blocks[i].scale = 0;
+                    }
+                    if (blocks[i].amount_paid === undefined) {
+                        blocks[i].amount_paid = 0;
+                    }
+                    if (blocks[i].url === undefined) {
+                        blocks[i].url = '';
+                    }
+                    if (blocks[i].text === undefined) {
+                        blocks[i].text = '';
+                    }
+                }
                 res.json(blocks);
+            }
         });
     });
 router.route('/blocks/:block_id')
