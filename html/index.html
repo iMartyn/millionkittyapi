@@ -150,10 +150,10 @@ $(function(){
 	$('a.links').click(function () {
         clickedSponsor = this.id.replace('img','');
         toggleSponsor(clickedSponsor);
-		$('#bid').slideToggle("slow");
+		$('#bid').slideDown("slow");
 	});
 	$('a.close').click(function () {
-		$('#bid').slideToggle("slow");
+		$('#bid').slideUp("slow");
 	});
     primus.on('data',function(data) {
         updateColours();
