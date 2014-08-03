@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <title>The Million Kitty Page</title>
 <script src="jquery.js"></script>
+<script src="/primus/primus.js"></script>
 <script>
+var primus = Primus.connect();
 $(function(){	
 	var imgblock = [
 	[0,0,2,2],
@@ -99,8 +101,6 @@ $(function(){
                     mainblock.append(a);
                     a.children().eq(0).css("opacity",1-sortedBlockData[i].scale);
                     a.children().eq(1).css("opacity",sortedBlockData[i].scale);
-        //			a.children().eq(0).css("opacity",0.25);
-        //			a.children().eq(1).css("opacity",0);
             }
     });
 });

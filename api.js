@@ -1,5 +1,8 @@
 var express = require('express');
+var Primus = require('primus');
+var http = require('http');
 var app = express();
+var server = http.createServer(app);
 var bodyParser = require('body-parser');
 
 app.use(bodyParser());
@@ -111,7 +114,10 @@ router.route('/blocks/:block_id')
                 console.log(block)
                 block.save(function(err) {
                     if (err) res.send(err);
-                    else res.json({message: 'Block updated'});
+                    else {
+                        res.json({message: 'Block updated'});
+                        primus.write('Block updated');
+                    }
                 });
             }
         });
@@ -119,6 +125,10 @@ router.route('/blocks/:block_id')
 
 app.use('/api', router);
 app.use(express.static(__dirname + '/html'));
+primus = new Primus(server, { transformer: 'websockets' });
+primus.on('connection', function(spark) {
+    console.log('received connection');
+});
 
-app.listen(3000);
+server.listen(3000);
 console.log('API listening on port 3000');
