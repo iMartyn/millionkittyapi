@@ -1,0 +1,92 @@
+/*	Leeds Hack 2014 - The Million Kitty Page  ^o^
+	============================================= */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0} /* Resets */
+
+body,html 		{background-color:#000; width:100%; height:100%; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; text-rendering:optimizelegibility; word-wrap:break-word;}
+a				{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
+a, img			{border:0; outline:none;}
+a:focus			{color:#53B4ED; text-decoration:none;}
+a:link  		{color:#53B4ED; text-decoration:none;}
+a:visited		{color:#53B4ED; text-decoration:none;}
+a:hover			{color:#BBEFFF; text-decoration:none;}
+a:active		{color:#53B4ED; text-decoration:none;}
+em, i, .italic	{font-style:italic; color:inherit;}
+strong, b, .bold{font-weight:bold; color:inherit;}
+.underline		{text-decoration:underline; color:inherit;}
+.bold.ob		{font-style:italic;}
+
+
+/*	Defaults
+	============================================= */
+
+a.title			{display:block; font-size:4em; text-align:center; color:#f0f; line-height:1.4em;}
+a.close			{display:block; position:absolute; bottom:0; right:-120px; color:#666; font-size:1.0em;}
+a.close:hover	{color:#ccc;}
+a.footer		{display:block; padding:20px; margin:0 auto; text-align:center; color:#fff; font-size:1.2em;}
+a.footer.buy	{margin-top:60px;}
+a.footer:hover	{color:#f0f;}
+
+
+/*	index.html
+	============================================= */
+	
+#mainblock		{width:960px; height:1920px; margin:0 auto; position:relative; margin-bottom:40px;}
+#bid			{width:560px; height:320px; color:#fff; background-color:#222; border-radius:6px; padding:2em; margin:0 auto; margin-bottom:20px; position:relative;}
+.bid_title		{text-align:center; margin:0 auto; padding:10px 20px; background-color:#333; color:#888; font-size:1.0em; margin-bottom:20px;}
+.bid_text		{font-size:1.2em; margin-bottom:20px;}
+.bid_text p		{margin:10px 0;}
+a.links 		{display:block; position:absolute;}	
+a.links img		{border:2px solid #000; position:absolute;}
+a.outbid		{display:block; position:absolute; bottom:0; font-size:1.4em; padding:20px; background-color:#A023A0; border-radius:4px 4px 0 0; color:#fff; width:300px; text-align:center; left:140px; right:140px;}
+a.outbid:hover	{background-color:#f0f; color:#fff;}
+.price			{margin:0 auto; text-align:center; margin-top:40px; color:#ccc;}
+a.sponsor		{display:block; font-size:1.1em; padding:10px; background-color:#000; color:#fff; width:300px; text-align:center; margin:0 auto;}
+a.sponsor:hover	{background-color:#000; color:#0f0;}
+
+
+/*	buy.html
+	============================================= */
+	
+#buy			{width:560px; color:#fff; background-color:#222; border-radius:6px; padding:2em; margin:0 auto; margin-bottom:20px; min-height:400px; position:relative;}
+.buy_wrap		{background-color:#000; color:#0f0; font-size:4em; text-align:center; padding:20px; border-color:#000;}
+.buy_text		{font-size:1.2em; margin-bottom:20px; margin-top:20px; border-color:#222; background-color:#222; width:554px; height:100px; color:#fff;}
+.buy_link		{margin:0 auto; font-size:1.1em; padding:10px 0; background-color:#000; width:554px; color:#fff; text-align:center;}
+.price.buy		{margin-bottom:20px;}
+a.buy_butt		{display:block; font-size:1.4em; padding:20px; background-color:#0043A1; border-radius:4px; color:#fff; width:300px; text-align:center; margin:0 auto;}
+a.buy_butt:hover{background-color:#006BFF; color:#fff;}
+
+textarea				{border:1px solid #222; font-family:sans serif;}
+textarea:focus			{outline:0; outline:none !important; border:1px solid #000;}
+textarea.bid_text:focus	{outline:0; outline:none !important; border:1px solid #0f0;}
+textarea.sponsor		{border:1px solid #000; width:558px;}
+input.buy_amount		{display:inline-block; background-color:#000; color:#0f0; font-size:1em; border:1px solid #000; width:400px;}
+input.buy_amount:focus	{outline:0; outline:none !important; border:1px solid #000;}
+
+
+/*	nyan.html
+	============================================= */
+
+a.title.nyan	{padding-top:20px;}
+a.back			{display:block; margin-top:200px; margin-bottom:50px; color:#7193FF; font-size:1.0em;}
+a.back:hover	{color:#fff;}	
+
+.default		{width:100%; margin:0 auto; text-align:center; margin-top:60px;}
+#nyankitty		{width:840px; height:252px; background:url('nyankitty.png'); position:relative; -webkit-animation:dance 500ms linear 1s infinite; /* Chrome, Safari, Opera */ animation:dance 500ms linear 1s infinite;}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes dance {
+    0%   { -webkit-transform:translate(-7em,0);     }
+    25%  { -webkit-transform:translate(-2em,0);   	}
+    50%  { -webkit-transform:translate(-2em,5em) 	}
+    75%  { -webkit-transform:translate(-7em,5em);   }
+    100% { -webkit-transform:translate(-7em,0);     } 
+}
+
+/* Standard syntax */
+@keyframes dance {
+    0%   { transform:translate(-7em,0);     }
+    25%  { transform:translate(-2em,0);   	}
+    50%  { transform:translate(-2em,5em) 	}
+    75%  { transform:translate(-7em,5em);   }
+    100% { transform:translate(-7em,0);     } 
+}
