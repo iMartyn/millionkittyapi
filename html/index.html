@@ -123,20 +123,24 @@ $(function(){
 function toggleSponsor(sponsorID) {
         clickedSponsorUrl = sortedBlockData[sponsorID].url;
         clickedSponsorText = sortedBlockData[sponsorID].text;
+        clickedSponsorPrice = sortedBlockData[sponsorID].amount_paid;
         sponsorEl = $('#bid .sponsor');
         sponsorText = $('#bid .bid_text');
         sponsorAvailable = $('#bid .bid_title');
+        sponsorPrice = $('#bid .price_amount');
         if (clickedSponsorUrl !== '') {
-            sponsorText.innerHTML = clickedSponsorText;
+            sponsorText.html(clickedSponsorText);
             sponsorEl.attr('href',clickedSponsorUrl);
             sponsorEl.show();
-            sponsorAvailable.innerHTML = 'This is a sponsored kitty but you can outbid the current sponsor!'
-            $('.outbid').innerHTML = 'OUTBID';
+            sponsorAvailable.html('This is a sponsored kitty but you can outbid the current sponsor!');
+            sponsorPrice.html('$'+clickedSponsorPrice)
+            $('.outbid').html('OUTBID');
         } else {
-            sponsorAvailable.innerHTML = 'This Kitty is available!'
-            $('.outbid').innerHTML = 'BID';
+            sponsorAvailable.html('This Kitty is available!');
+            $('.outbid').html('BID');
+            sponsorPrice.html('$0.01');
             sponsorEl.hide();
-            sponsorText.innerHTML = defaultBidText;
+            sponsorText.html(defaultBidText);
         }
 }
 
@@ -154,7 +158,14 @@ $(function(){
         updateColours();
     });
 });
-	
+var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+$(document).keydown(function(e) {
+  kkeys.push( e.keyCode );
+  if ( kkeys.toString().indexOf( konami ) >= 0 ){
+    $(document).unbind('keydown',arguments.callee);
+    document.location = '/nyan.html';
+  }
+});
 </script>
 <style>
 	a				{-webkit-transition:all .2s ease-in-out; -moz-transition:all .2s ease-in-out; -o-transition:all .2s ease-in-out; -ms-transition:all .2s ease-in-out; transition:all .2s ease-in-out; cursor:pointer;}
@@ -194,7 +205,7 @@ $(function(){
 		</div>
 		<a href="nyan.html" class="sponsor">Visit this sponsor</a>
 		<div class="price">
-			<span class="">Current Price: </span><span class="">$0.01</span>
+			<span class="price_label">Current Price: </span><span class="price_amount">$0.01</span>
 		</div>
 		<a href="buy.html" class="outbid">OUTBID</a>
 		<a class="close">Close This</a>
