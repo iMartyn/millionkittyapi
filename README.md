@@ -1,3 +1,4 @@
+# (HACKDAY Project with no updates, do not use in current state!)
 # Millionkittyapi
 
 This README outlines the details of collaborating on this Ember application.
